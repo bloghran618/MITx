@@ -1,0 +1,30 @@
+def subsequenceHashes(seq, k):
+    subseq = ''
+    index = -k
+    for let in seq:
+        index += 1
+        subseq += let
+        if len(subseq) >= k:
+            yield (subseq, hash(subseq), index)
+            subseq = subseq[1:]
+
+def getExactSubmatches(a, b, k, m):
+    sub_a = subsequenceHashes(a, k)
+    for (subseq_a, subseq_hash_a, index_a) in sub_a:
+        sub_b = subsequenceHashes(b, k)
+        for (subseq_b, subseq_hash_b, index_b) in sub_b:
+            print subseq_a, subseq_b
+
+
+
+a = 'abcdefgh'
+b = 'xxxabcfgh'
+
+a = iter('abcdefgh')
+b = iter('xxxabcfgh')
+
+length = 3
+
+getExactSubmatches(a, b, length, 1)
+# for item in getExactSubmatches(a, b, length, 1):
+#     print item
